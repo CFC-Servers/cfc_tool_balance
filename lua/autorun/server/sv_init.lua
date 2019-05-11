@@ -8,6 +8,3 @@ for _, dir in ipairs(directories) do
         include(baseDir..dir.."/"..file)
     end
 end
-
-
-
