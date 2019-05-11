@@ -1,4 +1,4 @@
-
+--wire/turret
 
 -- min and max values for gmod_wire_turret
 local values = { 

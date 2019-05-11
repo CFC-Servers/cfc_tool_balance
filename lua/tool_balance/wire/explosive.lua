@@ -1,5 +1,6 @@
+--wire/explosive
 
--- min, max values for gmod_wire_turret
+-- min and max values for gmod_wire_turret
 local values = { 
     damage  = {0, 100},
     radius  = {0, 500},
