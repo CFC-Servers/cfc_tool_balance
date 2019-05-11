@@ -1,3 +1,4 @@
+-- load all tool files
 local baseDir = "tool_balance/"
 local _, directories = file.Find( baseDir .. "*", "LUA")
 
@@ -7,3 +8,6 @@ for _, dir in ipairs(directories) do
         include(baseDir..dir.."/"..file)
     end
 end
+
+
+
