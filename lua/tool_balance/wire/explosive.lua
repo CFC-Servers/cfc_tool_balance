@@ -11,12 +11,15 @@ local values = {
 local function wrapWireExplosive() 
     local WIRE_EXPLOSIVE = scripted_ents.GetStored( "gmod_wire_explosive" ) 
     local setup = WIRE_EXPLOSIVE.t.Setup
-    WIRE_EXPLOSIVE.t.Setup = function(self, key, damage, delaytime, removeafter, radius, affectother, notaffected, delayreloadtime, maxhealth, bulletproof, explosionproof, fallproof, explodeatzero, resetatexplode, fireeffect, coloreffect, invisibleatzero )
+    
+    WIRE_EXPLOSIVE.t.Setup = function(self, key, damage, delaytime, removeafter, radius, affectother, notaffected, delayreloadtime, ... )
         damage          = math.Clamp(damage, values.damage[1], values.damage[2])
         radius          = math.Clamp(radius, values.radius[1], values.radius[2])
         delayreloadtime = math.Clamp(delayreloadtime, values.delayreloadtime[1], values.delayreloadtime[2])
-        return setup(self, key, damage, delaytime, removeafter, radius, affectother, notaffected, delayreloadtime, maxhealth, bulletproof, explosionproof, fallproof, explodeatzero, resetatexplode, fireeffect, coloreffect, invisibleatzero )
+        
+        return setup(self, key, damage, delaytime, removeafter, radius, affectother, notaffected, delayreloadtime, ... )
     end
+    
     print("[cfc_tool_balance] wire/explosive loaded")
 end
 
