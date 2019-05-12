@@ -7,7 +7,6 @@ local config = {
     delayreloadtime = {5, math.huge}
 }
 
-
 -- min and max values for gmod_wire_explosive
 local values = { 
     {}, --key

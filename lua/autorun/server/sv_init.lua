@@ -1,5 +1,4 @@
 cfcToolBalance = {}
-cfcToolBalance.config = {}
 
 include("tool_balance/util.lua")
 
