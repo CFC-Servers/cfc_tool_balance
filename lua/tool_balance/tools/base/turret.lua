@@ -1,13 +1,16 @@
---base/turret
+-- base/turret
 
--- min and max values for gmod_turret
-local values = { 
+-- config
+local config = { 
     delay   = {0.5, math.huge},
     damage  = {0, 20},
     force   = {0, 1},
     numbullets = {0,1},
     spread = {0,10}
 }
+
+-- {min, max} values for gmod_turret
+local values = config
 
 local clampFunction = cfcToolBalance.clampFunction
 
@@ -32,17 +35,4 @@ local function onTimout()
     print("[cfc_tool_balance] base/turret failed, waiter timed out")
 end
 
-
-if Waiter then
-    Waiter.waitFor(waitingFor, wrapTurret, onTimout )
-else
-    WaiterQueue = WaiterQueue or {}
-
-    local struct = {
-        waitingFor = waitingFor,
-        onSuccess = wrapTurret,
-        onTimeout = onTimout
-    }
-
-    table.insert( WaiterQueue, struct )
-end
+cfcToolBalance.waitFor(waitingFor, wrapTurret, onTimout )
