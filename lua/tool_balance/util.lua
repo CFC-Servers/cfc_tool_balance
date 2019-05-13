@@ -7,11 +7,8 @@ function cfcToolBalance.clampFunction(func, min_max_values)
         
         -- clamp args according to min_max_values
         for i, range in ipairs(min_max_values) do
-            min = range[1]
-            max = range[2]
-            
-            if min and max then
-                args[i] = math.Clamp(args[i], min, max)
+            if range.min and range.max then
+                args[i] = math.Clamp(args[i], range.min , range.max)
             end
         end
 

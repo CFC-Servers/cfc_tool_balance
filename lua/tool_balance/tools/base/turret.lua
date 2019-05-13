@@ -2,14 +2,14 @@
 
 -- config
 local config = { 
-    delay   = {0.5, math.huge},
-    damage  = {0, 20},
-    force   = {0, 1},
-    numbullets = {0,1},
-    spread = {0,10}
+    delay      = { min = 0.5, max = math.huge },
+    damage     = { min = 0,   max = 20 },
+    force      = { min = 0,   max = 1 },
+    numbullets = { min = 0,   max = 1 },
+    spread     = { min = 0,   max = 10 }
 }
 
--- {min, max} values for gmod_turret
+-- min and max values for gmod_turret
 local values = config
 
 local clampFunction = cfcToolBalance.clampFunction

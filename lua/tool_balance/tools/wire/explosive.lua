@@ -2,9 +2,9 @@
 
 -- config
 local config = { 
-    damage = {0,100},
-    radius = {0, 500},
-    delayreloadtime = {5, math.huge}
+    damage          = { min = 0, max = 100 },
+    radius          = { min = 0, max = 500 },
+    delayreloadtime = { min = 5, max = math.huge }
 }
 
 -- min and max values for gmod_wire_explosive
