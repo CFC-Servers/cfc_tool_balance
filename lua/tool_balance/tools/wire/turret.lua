@@ -24,7 +24,7 @@ local clampFunction = cfcToolBalance.clampFunction
 local function wrapWireTurret() 
     local WIRE_TURRET =  scripted_ents.GetStored( "gmod_wire_turret" ).t
     WIRE_TURRET.Setup = clampFunction(WIRE_TURRET.Setup, values)
-    print("[cfc_tool_balance] wire/turret loaded")
+    print("[CFC_Tool_Balance] wire/turret loaded")
 end
 
 local function waitingFor() 
@@ -33,7 +33,7 @@ local function waitingFor()
 end
 
 local function onTimout() 
-    print("[cfc_tool_balance] wire/turret failed, waiter timed out")
+    print("[CFC_Tool_Balance] wire/turret failed, waiter timed out")
 end
 
 cfcToolBalance.waitFor(waitingFor, wrapWireTurret, onTimout )

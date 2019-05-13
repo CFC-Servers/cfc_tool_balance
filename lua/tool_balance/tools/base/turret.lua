@@ -23,7 +23,7 @@ local function wrapTurret()
     TURRET.SetNumBullets = clampFunction(TURRET.SetNumBullets, {values.numbullets})
     TURRET.SetSpread = clampFunction(TURRET.SetSpread , {values.spread})
 
-    print("[cfc_tool_balance] base/turret loaded")
+    print("[CFC_Tool_Balance] base/turret loaded")
 end
 
 local function waitingFor() 
@@ -32,7 +32,7 @@ local function waitingFor()
 end
 
 local function onTimout() 
-    print("[cfc_tool_balance] base/turret failed, waiter timed out")
+    print("[CFC_Tool_Balance] base/turret failed, waiter timed out")
 end
 
 cfcToolBalance.waitFor(waitingFor, wrapTurret, onTimout )

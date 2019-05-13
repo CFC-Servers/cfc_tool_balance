@@ -25,7 +25,7 @@ local function wrapWireExplosive()
     local WIRE_EXPLOSIVE = scripted_ents.GetStored( "gmod_wire_explosive" ).t
     WIRE_EXPLOSIVE.Setup = clampFunction(WIRE_EXPLOSIVE.Setup, values)
     
-    print("[cfc_tool_balance] wire/explosive loaded")
+    print("[CFC_Tool_Balance] wire/explosive loaded")
 end
 
 local function waitingFor() 
@@ -34,7 +34,7 @@ local function waitingFor()
 end
 
 local function onTimout() 
-    print("[cfc_tool_balance] wire/explosive failed, waiter timed out")
+    print("[CFC_Tool_Balance] wire/explosive failed, waiter timed out")
 end
 
 cfcToolBalance.waitFor(waitingFor, wrapWireExplosive, onTimout )
