@@ -1,4 +1,5 @@
 -- base/turret
+cfcToolBalance.tools["gmod_turret"] = true
 
 -- config
 local config = { 
@@ -36,4 +37,3 @@ local function onTimout()
 end
 
 cfcToolBalance.waitFor(waitingFor, wrapTurret, onTimout )
-

@@ -1,4 +1,5 @@
 cfcToolBalance = {}
+cfcToolBalance.tools = {}
 
 include("tool_balance/util.lua")
 
@@ -12,3 +13,15 @@ for _, dir in ipairs(directories) do
         include(baseDir..dir.."/"..file)
     end
 end
+
+-- allow turrets to do damage while apg "Allow Prop Killing" is off
+hook.Remove("APGisBadEnt", "CFCToolIsBalanced")
+hook.Add("APGisBadEnt", "CFCToolIsBalanced", function(ent)
+    if not IsValid(ent) then return end
+
+    local class = ent:GetClass()
+    local isBalancedTool = cfcToolBalance.tools[class] 
+    if isBalancedTool == nil then return end
+    
+    return not isBalancedTool
+end)
