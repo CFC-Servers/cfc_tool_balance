@@ -1,4 +1,5 @@
 --wire/explosive
+cfcToolBalance.tools["gmod_wire_explosive"] = true
 
 -- config
 local config = { 
@@ -38,4 +39,3 @@ local function onTimout()
 end
 
 cfcToolBalance.waitFor(waitingFor, wrapWireExplosive, onTimout )
-
