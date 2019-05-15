@@ -29,6 +29,15 @@ function cfcToolBalance.clampMethod(func, min_max_values)
     return cfcToolBalance.clampFunction(func, min_max_values)
 end
 
+function cfcToolBalance.callAfter(func, afterFunc)
+    local function wrapped(...)
+        local out = func(...)
+        afterFunc(...)
+        return out
+    end
+    return wrapped
+end
+
 function cfcToolBalance.waitFor( waitingFor, onSuccess, onTimout )
     if Waiter then
         Waiter.waitFor(waitingFor, onSuccess, onTimout )
