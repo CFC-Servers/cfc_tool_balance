@@ -13,16 +13,16 @@ local config = {
 -- min and max values for gmod_turret
 local values = config
 
-local clampFunction = cfcToolBalance.clampFunction
+local clampMethod = cfcToolBalance.clampMethod
 
 local function wrapTurret() 
     local TURRET =  scripted_ents.GetStored( "gmod_turret" ).t
     
-    TURRET.SetDelay = clampFunction(TURRET.SetDelay, {values.delay})
-    TURRET.SetDamage = clampFunction(TURRET.SetDamage, {values.damage})
-    TURRET.SetForce = clampFunction(TURRET.SetForce, {values.force})
-    TURRET.SetNumBullets = clampFunction(TURRET.SetNumBullets, {values.numbullets})
-    TURRET.SetSpread = clampFunction(TURRET.SetSpread , {values.spread})
+    TURRET.SetDelay = clampMethod(TURRET.SetDelay, {values.delay})
+    TURRET.SetDamage = clampMethod(TURRET.SetDamage, {values.damage})
+    TURRET.SetForce = clampMethod(TURRET.SetForce, {values.force})
+    TURRET.SetNumBullets = clampMethod(TURRET.SetNumBullets, {values.numbullets})
+    TURRET.SetSpread = clampMethod(TURRET.SetSpread , {values.spread})
 
     print("[CFC_Tool_Balance] base/turret loaded")
 end

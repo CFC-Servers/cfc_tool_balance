@@ -22,11 +22,11 @@ local values = {
     config.delayreloadtime
 }
 
-local clampFunction = cfcToolBalance.clampFunction
+local clampMethod = cfcToolBalance.clampMethod
 
 local function wrapWireExplosive() 
     local WIRE_EXPLOSIVE = scripted_ents.GetStored( "gmod_wire_explosive" ).t
-    WIRE_EXPLOSIVE.Setup = clampFunction(WIRE_EXPLOSIVE.Setup, values)
+    WIRE_EXPLOSIVE.Setup = clampMethod(WIRE_EXPLOSIVE.Setup, values)
     
     local explode = WIRE_EXPLOSIVE.Explode
     WIRE_EXPLOSIVE.Explode = function( self, ... )

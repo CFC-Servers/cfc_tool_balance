@@ -20,11 +20,11 @@ local values = {
     config.spread
 }
 
-local clampFunction = cfcToolBalance.clampFunction
+local clampMethod = cfcToolBalance.clampMethod
 
 local function wrapWireTurret() 
     local WIRE_TURRET =  scripted_ents.GetStored( "gmod_wire_turret" ).t
-    WIRE_TURRET.Setup = clampFunction(WIRE_TURRET.Setup, values)
+    WIRE_TURRET.Setup = clampMethod(WIRE_TURRET.Setup, values)
     print("[CFC_Tool_Balance] wire/turret loaded")
 end
 
