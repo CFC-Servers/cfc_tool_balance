@@ -1,8 +1,13 @@
+local function count(tbl)
+    local keys = table.GetKeys(tbl)
+    return keys[#keys]
+end
+
 function cfcToolBalance.clampFunction(func, min_max_values) 
     -- takes a function and a list of {min,max} values for each parameter
     -- returns a new function
 
-    local function clamped(self, ...)
+    local function clamped(...)
         local args = {...}
         
         -- clamp args according to min_max_values
@@ -11,11 +16,17 @@ function cfcToolBalance.clampFunction(func, min_max_values)
                 args[i] = math.Clamp(args[i], range.min , range.max)
             end
         end
-
-        func(self, unpack(args))
+        
+        local endIndex = count(args)
+        return func(unpack(args, 1, endIndex))
     end
 
     return clamped
+end
+
+function cfcToolBalance.clampMethod(func, min_max_values)
+    table.insert(min_max_values, 1, {})
+    return cfcToolBalance.clampFunction(func, min_max_values)
 end
 
 function cfcToolBalance.waitFor( waitingFor, onSuccess, onTimout )
