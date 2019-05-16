@@ -1,5 +1,5 @@
 cfcToolBalance = {}
-cfcToolBalance.canDamage = {}
+cfcToolBalance.canDealDamage = {}
 
 include("tool_balance/util.lua")
 
@@ -20,8 +20,8 @@ hook.Add("APGisBadEnt", "CFCToolBalanceCanDamage", function(ent)
     if not IsValid(ent) then return end
 
     local class = ent:GetClass()
-    local canDamage = cfcToolBalance.canDamage[class] 
-    if canDamage == nil then return end
+    local canDealDamage = cfcToolBalance.canDealDamage[class] 
+    if canDealDamage == nil then return end
     
-    return not canDamage
+    return not canDealDamage
 end)
