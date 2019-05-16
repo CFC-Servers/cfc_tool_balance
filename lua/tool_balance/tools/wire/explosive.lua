@@ -1,5 +1,5 @@
 --wire/explosive
-cfcToolBalance.canDamage["gmod_wire_explosive"] = true
+cfcToolBalance.canDealDamage["gmod_wire_explosive"] = true
 
 -- config
 local config = { 

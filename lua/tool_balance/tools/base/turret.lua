@@ -1,5 +1,5 @@
 -- base/turret
-cfcToolBalance.canDamage["gmod_turret"] = true
+cfcToolBalance.canDealDamage["gmod_turret"] = true
 
 -- config
 local config = { 

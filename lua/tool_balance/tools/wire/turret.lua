@@ -1,5 +1,5 @@
 --wire/turret
-cfcToolBalance.canDamage["gmod_wire_turret"] = true
+cfcToolBalance.canDealDamage["gmod_wire_turret"] = true
 
 -- config
 local config = { 
