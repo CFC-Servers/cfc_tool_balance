@@ -3,7 +3,7 @@ cfcToolBalance.canDealDamage["gmod_turret"] = true
 
 -- config
 local config = { 
-    delay      = { min = 0.5, max = math.huge },
+    delay      = { min = 0.05, max = math.huge },
     damage     = { min = 0,   max = 20 },
     force      = { min = 0,   max = 1 },
     numbullets = { min = 0,   max = 1 },
