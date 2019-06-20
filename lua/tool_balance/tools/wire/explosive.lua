@@ -29,7 +29,7 @@ local function wrapWireExplosive()
     WIRE_EXPLOSIVE.Setup = clampFunction(WIRE_EXPLOSIVE.Setup, values)
     
     local explode = WIRE_EXPLOSIVE.Explode
-    WIRE_EXPLOSIVE.Explode = function( self, .. .)
+    WIRE_EXPLOSIVE.Explode = function( self, ... )
         local age = CurTime() - self:GetCreationTime()
         if age < EXPLOSIVE_WAIT_PERIOD then return end
 
