@@ -32,8 +32,8 @@ local function waitingFor()
     return ent and ent.t.SetDamage ~= nil
 end
 
-local function onTimout() 
+local function onTimeout() 
     print("[CFC_Tool_Balance] base/turret failed, waiter timed out")
 end
 
-cfcToolBalance.waitFor(waitingFor, wrapTurret, onTimout )
+cfcToolBalance.waitFor(waitingFor, wrapTurret, onTimeout )
