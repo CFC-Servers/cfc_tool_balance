@@ -33,8 +33,8 @@ local function waitingFor()
     return MakeEmitter ~= nil and ent.t.SetupDataTables ~= nil
 end
 
-local function onTimout() 
+local function onTimeout() 
     print("[CFC_Tool_Balance] base/emitter failed, waiter timed out")
 end
 
-cfcToolBalance.waitFor(waitingFor, wrapEmitter, onTimout )
+cfcToolBalance.waitFor(waitingFor, wrapEmitter, onTimeout )
