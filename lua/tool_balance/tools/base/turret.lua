@@ -36,4 +36,4 @@ local function onTimeout()
     print( "[CFC_Tool_Balance] base/turret failed, waiter timed out" )
 end
 
-cfcToolBalance.waitFor( waitingFor, wrapTurret, onTimeout )
+cfcToolBalance.waitFor( waitingFor, wrapTurret, onTimeout, "turret" )
