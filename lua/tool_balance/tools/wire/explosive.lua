@@ -44,8 +44,8 @@ local function waitingFor()
     return ent and ent.t.Setup ~= nil
 end
 
-local function onTimout() 
+local function onTimeout() 
     print("[CFC_Tool_Balance] wire/explosive failed, waiter timed out")
 end
 
-cfcToolBalance.waitFor(waitingFor, wrapWireExplosive, onTimout )
+cfcToolBalance.waitFor(waitingFor, wrapWireExplosive, onTimeout )
