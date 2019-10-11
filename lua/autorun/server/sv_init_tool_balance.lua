@@ -7,10 +7,10 @@ include("tool_balance/util.lua")
 local baseDir = "tool_balance/tools/"
 local _, directories = file.Find( baseDir .. "*", "LUA")
 
-for _, dir in ipairs(directories) do 
-    local files, _ = file.Find(baseDir..dir.."/*.lua", "LUA") 
-    for _, file in ipairs(files) do
-        include(baseDir..dir.."/"..file)
+for _, dir in ipairs(directories) do
+    local files, _ = file.Find( baseDir .. dir .. "/*.lua", "LUA" )
+    for _, file in ipairs( files ) do
+        include( baseDir .. dir .. "/" .. file )
     end
 end
 
@@ -20,8 +20,8 @@ hook.Add("APGisBadEnt", "CFCToolBalanceCanDamage", function(ent)
     if not IsValid(ent) then return end
 
     local class = ent:GetClass()
-    local canDealDamage = cfcToolBalance.canDealDamage[class] 
+    local canDealDamage = cfcToolBalance.canDealDamage[class]
     if canDealDamage == nil then return end
-    
+
     return not canDealDamage
 end)
