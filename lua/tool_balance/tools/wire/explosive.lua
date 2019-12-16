@@ -48,4 +48,4 @@ local function onTimeout()
     print( "[CFC_Tool_Balance] wire/explosive failed, waiter timed out" )
 end
 
-cfcToolBalance.waitFor( waitingFor, wrapWireExplosive, onTimeout, "explosive" )
+cfcToolBalance.waitFor( waitingFor, wrapWireExplosive, onTimeout, "wire/explosive" )
