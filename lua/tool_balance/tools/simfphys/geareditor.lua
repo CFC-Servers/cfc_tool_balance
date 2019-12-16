@@ -31,4 +31,4 @@ local function onTimeout()
     print( "[CFC_Tool_Balance] simfphys/geareditor failed, waiter timed out" )
 end
 
-cfcToolBalance.waitFor( waitingFor, wrapGearEditor, onTimeout )
+cfcToolBalance.waitFor( waitingFor, wrapGearEditor, "simfphys/geareditor" )
