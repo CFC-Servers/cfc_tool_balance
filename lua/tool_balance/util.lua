@@ -39,18 +39,5 @@ function cfcToolBalance.callAfter( func, afterFunc )
 end
 
 function cfcToolBalance.waitFor( waitingFor, onSuccess, onTimout )
-    if Waiter then
-        Waiter.waitFor( waitingFor, onSuccess, onTimout )
-    else
-        WaiterQueue = WaiterQueue or {}
-
-        local struct = {
-            waitingFor = waitingFor,
-            onSuccess = onSuccess,
-            onTimeout = onTimout
-        }
-
-        table.insert( WaiterQueue, struct )
-    end
-
+    Waiter.waitFor( waitingFor, onSuccess, onTimout )
 end
