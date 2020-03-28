@@ -1,3 +1,5 @@
+require( "cfcwaiter" )
+
 cfcToolBalance = {}
 cfcToolBalance.canDealDamage = {}
 
