@@ -11,7 +11,8 @@ Scripts should be added to `lua/tool_balance/tools/<category>/scriptname.lua` e.
 - ##### cfcToolBalance.clampFunction( func, min_max_values )
 
   Takes a function and a list of min max values, returning a new function that when called clamps each argument before calling the original function.
-  An empty table can be used to ignore that argument 
+  If a table with no min and max keys is used the argument will not be clamped. 
+  
   example: 
   
     `cfcToolBalance.clampFunction( func, { {min=0, max=10}, {}, {min=10, max=20} })`
