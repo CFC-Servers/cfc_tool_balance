@@ -22,7 +22,7 @@ Scripts should be added to `lua/tool_balance/tools/<category>/scriptname.lua` e.
   Does the same thing as clampFunction but ignores the first argument. Used to ignore self in methods
   
 - ##### cfcToolBalance.callAfter( func, afterFunc )
-  returns a new function that calls `afterFunc` after callin `func` the new function will return  the value returned by `func`
+  returns a new function that calls `afterFunc` after calling `func`. The new function will return  the value returned by `func`
   
 ## Balanced tools
 ###### wire/explosive
