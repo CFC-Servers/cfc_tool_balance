@@ -1,3 +1,5 @@
+require( "cfcwaiter" )
+
 local function count( tbl )
     local keys = table.GetKeys( tbl )
     return keys[#keys]
@@ -41,18 +43,5 @@ end
 function cfcToolBalance.waitFor( waitingFor, onSuccess, onTimout, name )
     local identifier = "cfc_tool_balance_" .. name
 
-    if Waiter then
-        Waiter.waitFor( waitingFor, onSuccess, onTimout, identifier )
-    else
-        WaiterQueue = WaiterQueue or {}
-
-        local struct = {
-            waitingFor = waitingFor,
-            onSuccess = onSuccess,
-            onTimeout = onTimout,
-            identifier = identifier
-        }
-
-        table.insert( WaiterQueue, struct )
-    end
+    Waiter.waitFor( waitingFor, onSuccess, onTimout, identifier )
 end
