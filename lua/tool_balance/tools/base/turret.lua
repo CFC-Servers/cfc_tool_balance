@@ -23,6 +23,9 @@ local function wrapTurret()
     TURRET.SetForce = clampMethod( TURRET.SetForce, {values.force} )
     TURRET.SetNumBullets = clampMethod( TURRET.SetNumBullets, {values.numbullets} )
     TURRET.SetSpread = clampMethod( TURRET.SetSpread, {values.spread} )
+    TURRET.SetSound = function()
+        -- noop
+    end
 
     print( "[CFC_Tool_Balance] base/turret loaded" )
 end
