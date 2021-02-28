@@ -24,7 +24,7 @@ end
 
 local function waitingFor()
     local ent = scripted_ents.GetStored( "gmod_lamp" )
-    return ent and ent.t.SetBrightness ~= nil
+    return ent and ent.t.UpdateLight ~= nil
 end
 
 local function onTimeout()
