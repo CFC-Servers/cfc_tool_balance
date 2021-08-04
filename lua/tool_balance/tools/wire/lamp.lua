@@ -2,7 +2,7 @@
 
 -- config
 local config = {
-    distance   = { min = 64, max = 2048 },
+    distance = { min = 64, max = 2048 },
 }
 
 -- min and max values for gmod_wire_lamp
