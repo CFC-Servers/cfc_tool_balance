@@ -10,14 +10,28 @@ local config = {
 -- min and max values for gmod_lamp
 local values = config
 
-local clampMethod = cfcToolBalance.clampMethod
+local callAfter = cfcToolBalance.callAfter
+
+local function clampLamp( self, ... ) -- The setter functions for lamps get overridden by ENT.NetworkVar, so we cannot just wrap those functions and call it a day
+    self:SetLightFOV( math.Clamp( self.fov or 0, values.fov.min, values.fov.max ) )
+    self:SetDistance( math.Clamp( self.distance or 0, values.distance.min, values.distance.max ) )
+    self:SetBrightness( math.Clamp( self.brightness or 0, values.brightness.min, values.brightness.max ) )
+end
 
 local function wrapLamp()
-    local LAMP =  scripted_ents.GetStored( "gmod_lamp" ).t
+    local LAMP = scripted_ents.GetStored( "gmod_lamp" ).t
 
-    LAMP.SetLightFov = clampMethod( LAMP.SetLightFov, {values.fov} )
-    LAMP.SetBrightness = clampMethod( LAMP.SetBrightness, {values.brightness} )
-    LAMP.SetDistance = clampMethod( LAMP.SetDistance, {values.distance} )
+    LAMP.UpdateLight = callAfter( LAMP.UpdateLight, clampLamp )
+
+    hook.Add( "OnEntityCreated", "CFCToolBalanceClampLamp", function( ent )
+        if ent:GetClass() ~= "gmod_lamp" then return end
+
+        timer.Simple( 0.1, function()
+            if not IsValid( ent ) then return end
+
+            clampLamp( ent )
+        end )
+    end )
 
     print( "[CFC_Tool_Balance] base/lamp loaded" )
 end
