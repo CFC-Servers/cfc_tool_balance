@@ -21,7 +21,7 @@ end
 local function wrapWireLamp()
     local WIRE_LAMP =  scripted_ents.GetStored( "gmod_wire_lamp" ).t
 
-    WIRE_LAMP.UpdateLight = callAfter( clampWireLampDistance, WIRE_LAMP.UpdateLight )
+    WIRE_LAMP.UpdateLight = callAfter( clampWireLamp, WIRE_LAMP.UpdateLight )
 
     print( "[CFC_Tool_Balance] wire/lamp loaded" )
 end
