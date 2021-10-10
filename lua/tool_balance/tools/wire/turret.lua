@@ -434,7 +434,7 @@ hook.Add( "InitPostEntity", "CFC_ToolBalance_WireTurret_WrapBuildCPanel", functi
         CPanel:CheckBox( "Lock Damage", "wire_turret_damage_lock" )
         CPanel:CheckBox( "Lock Spread", "wire_turret_spread_lock" )
         CPanel:CheckBox( "Lock Delay", "wire_turret_delay_lock" )
-        CPanel:CheckBox( "Lock BpS", "wire_turret_numbullets_lock" )
+        CPanel:CheckBox( "Lock Bullets per Shot", "wire_turret_numbullets_lock" )
 
         hook.Run( "CFC_ToolBalance_WireTurret_PanelBuilt" )
 
