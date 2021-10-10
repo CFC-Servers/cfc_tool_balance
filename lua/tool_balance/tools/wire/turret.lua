@@ -403,7 +403,7 @@ hook.Add( "InitPostEntity", "CFC_ToolBalance_WireTurret_WrapBuildCPanel", functi
     toolMenu.CPanelFunction = function( CPanel )
         oldBuilder( CPanel )
 
-        if not game.SinglePlayer() then -- Wire for some reason only creates the numbullets slider in singleplayernumLimite allowing everything else
+        if not game.SinglePlayer() then -- Wire for some reason only creates the numbullets slider in singleplayer
             local numLim = config.numbullets
 
             CPanel:NumSlider( "#Tool_wire_turret_numbullets", "wire_turret_numbullets", numLim.min, numLim.max, 0 )
