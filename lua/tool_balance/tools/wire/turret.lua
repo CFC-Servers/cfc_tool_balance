@@ -415,5 +415,10 @@ hook.Add( "InitPostEntity", "CFC_ToolBalance_WireTurret_WrapBuildCPanel", functi
         CPanel:CheckBox( "Lock BpS", "wire_turret_numbullets_lock" )
 
         hook.Run( "CFC_ToolBalance_WireTurret_PanelBuilt" )
+
+        WIRE_TURRET_DELAY = GetConVar( "wire_turret_delay" )
+        WIRE_TURRET_DAMAGE = GetConVar( "wire_turret_damage" )
+        WIRE_TURRET_NUMBULLETS = GetConVar( "wire_turret_numbullets" )
+        WIRE_TURRET_SPREAD = GetConVar( "wire_turret_spread" )
     end
 end )
