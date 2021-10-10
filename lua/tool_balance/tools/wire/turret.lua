@@ -233,6 +233,9 @@ local LOCK_DAMAGE = CreateClientConVar( "wire_turret_damage_lock", 0, true, fals
 local LOCK_NUMBULLETS = CreateClientConVar( "wire_turret_numbullets_lock", 0, true, false, "Whether or not to lock the numbullets slider of a wire turret.", 0, 1 )
 local LOCK_SPREAD = CreateClientConVar( "wire_turret_spread_lock", 0, true, false, "Whether or not to lock the spread slider of a wire turret.", 0, 1 )
 
+local DPS_LABEL
+local TEXT_COLOR = Color( 0, 0, 0, 255 )
+
 local forceWrite = {}
 local lockTable = {
     delay = LOCK_DELAY,
@@ -340,6 +343,14 @@ local function adjustDPSVar( varName, oldVal, newVal )
     return newVal
 end
 
+local function displayDPS()
+    if not DPS_LABEL then return end
+
+    local dps = getDPSMult()
+
+    DPS_LABEL:SetText( "Estimated DPS: " .. floorF( dps ) )
+end
+
 local function dClampConVar( cvName, oldVal, newVal )
     if forceWrite[cvName] then
         forceWrite[cvName] = nil
@@ -362,12 +373,16 @@ local function dClampConVar( cvName, oldVal, newVal )
         LocalPlayer():ConCommand( otherValName .. " " .. otherValClamped )
     end
 
-    if not newValClamped or newValClamped == newVal then return end
+    if not newValClamped or newValClamped == newVal then
+        displayDPS()
+
+        return
+    end
 
     forceWrite[cvName] = true
     LocalPlayer():ConCommand( cvName .. " " .. newValClamped )
 
-    if not otherValName then return end
+    displayDPS()
 end
 
 cvars.AddChangeCallback( "wire_turret_delay", dClampConVar, "CFC_ToolBalance_WireTurret_Clamp" )
@@ -409,6 +424,13 @@ hook.Add( "InitPostEntity", "CFC_ToolBalance_WireTurret_WrapBuildCPanel", functi
             CPanel:NumSlider( "#Tool_wire_turret_numbullets", "wire_turret_numbullets", numLim.min, numLim.max, 0 )
         end
 
+        DPS_LABEL = vgui.Create( "DLabel", CPanel )
+
+        local skin = DPS_LABEL:GetSkin() or SKIN or {}
+
+        DPS_LABEL:SetTextColor( skin.colTextEntryText or TEXT_COLOR )
+        CPanel:AddItem( DPS_LABEL )
+
         CPanel:CheckBox( "Lock Damage", "wire_turret_damage_lock" )
         CPanel:CheckBox( "Lock Spread", "wire_turret_spread_lock" )
         CPanel:CheckBox( "Lock Delay", "wire_turret_delay_lock" )
@@ -420,5 +442,7 @@ hook.Add( "InitPostEntity", "CFC_ToolBalance_WireTurret_WrapBuildCPanel", functi
         WIRE_TURRET_DAMAGE = GetConVar( "wire_turret_damage" )
         WIRE_TURRET_NUMBULLETS = GetConVar( "wire_turret_numbullets" )
         WIRE_TURRET_SPREAD = GetConVar( "wire_turret_spread" )
+
+        displayDPS()
     end
 end )
