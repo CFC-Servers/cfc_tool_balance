@@ -30,7 +30,11 @@ local function wrapWireTurret()
     WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, {config.force})
     WIRE_TURRET.SetDamage = clampMethod( WIRE_TURRET.SetDamage, {config.damage})
     WIRE_TURRET.SetNumBullets = clampMethod( WIRE_TURRET.SetNumBullets, {config.numbullets})
-    WIRE_TURRET.SetSpread = clampMethod( WIRE_TURRET.SetSpread, {config.spread}) 
+    WIRE_TURRET.SetSpread = clampMethod( WIRE_TURRET.SetSpread, {config.spread})
+
+    WIRE_TURRET.SetSound = function()
+        -- nope
+    end
     print( "[CFC_Tool_Balance] wire/turret loaded" )
 end
 
