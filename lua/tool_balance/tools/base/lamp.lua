@@ -3,8 +3,8 @@
 -- config
 local config = {
     fov        = { min = 10, max = 170 },
-    distance   = { min = 64, max = 2048 },
-    brightness = { min = 0, max = 8 },
+    distance   = { min = 64, max = 1024 },
+    brightness = { min = 0, max = 3 },
 }
 
 -- min and max values for gmod_lamp

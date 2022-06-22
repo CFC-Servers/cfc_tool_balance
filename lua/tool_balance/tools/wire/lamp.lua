@@ -2,7 +2,9 @@
 
 -- config
 local config = {
-    distance = { min = 64, max = 2048 },
+    fov = { min = 10, max = 170 },
+    distance = { min = 64, max = 1024 },
+    brightness = { min = 0, max = 3 },
 }
 
 -- min and max values for gmod_wire_lamp
@@ -10,14 +12,16 @@ local values = config
 
 local callAfter = cfcToolBalance.callAfter
 
-local function clampWireLampDistance( self, ... ) -- Wire lamps don't have a :SetDistance() function of any kind, making the clamping process abnormal
+local function clampWireLamp( self, ... ) -- Wire lamps don't have setter functions of any kind for these values
+    self.FOV = math.Clamp( self.FOV or 0, values.fov.min, values.fov.max )
     self.Dist = math.Clamp( self.Dist or 0, values.distance.min, values.distance.max )
+    self.Brightness = math.Clamp( self.Brightness or 0, values.brightness.min, values.brightness.max )
 end
 
 local function wrapWireLamp()
     local WIRE_LAMP =  scripted_ents.GetStored( "gmod_wire_lamp" ).t
 
-    WIRE_LAMP.UpdateLight = callAfter( clampWireLampDistance, WIRE_LAMP.UpdateLight )
+    WIRE_LAMP.UpdateLight = callAfter( clampWireLamp, WIRE_LAMP.UpdateLight )
 
     print( "[CFC_Tool_Balance] wire/lamp loaded" )
 end
