@@ -22,7 +22,7 @@ end
 local function wrapLamp()
     local LAMP = scripted_ents.GetStored( "gmod_lamp" ).t
 
-    LAMP.UpdateLight = callAfter( LAMP.UpdateLight, clampLamp )
+    LAMP.UpdateLight = callAfter( clampLamp, LAMP.UpdateLight )
 
     hook.Add( "OnEntityCreated", "CFCToolBalanceClampLamp", function( ent )
         if not IsValid( ent ) then return end
