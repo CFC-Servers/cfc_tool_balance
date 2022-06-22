@@ -249,6 +249,7 @@ local lockTable = {
     numbullets = LOCK_NUMBULLETS,
     spread = LOCK_SPREAD
 }
+local lockMax = table.Count( lockTable ) - 1
 
 local function isLocked( varName )
     local lockConVar = lockTable[varName]
@@ -399,10 +400,40 @@ local function dClampConVar( cvName, oldVal, newVal )
     displayDPS()
 end
 
+local function dontLockAll( cvName, _, newVal )
+    if not clientReady then return end
+
+    newVal = tonumber( newVal or "0" ) or 0
+
+    if newVal == 0 then return end
+
+    local varName = string.gsub( cvName, "wire_turret_", "" )
+    varName = string.gsub( varName, "_lock", "" )
+
+    local lockCount = 0
+
+    for name, cv in pairs( lockTable ) do
+        if name ~= varName and cv:GetBool() then
+            lockCount = lockCount + 1
+
+            if lockCount == lockMax then
+                LocalPlayer():ConCommand( cvName .. " 0" )
+
+                return
+            end
+        end
+    end
+end
+
 cvars.AddChangeCallback( "wire_turret_delay", dClampConVar, "CFC_ToolBalance_WireTurret_Clamp" )
 cvars.AddChangeCallback( "wire_turret_damage", dClampConVar, "CFC_ToolBalance_WireTurret_Clamp" )
 cvars.AddChangeCallback( "wire_turret_numbullets", dClampConVar, "CFC_ToolBalance_WireTurret_Clamp" )
 cvars.AddChangeCallback( "wire_turret_spread", dClampConVar, "CFC_ToolBalance_WireTurret_Clamp" )
+
+cvars.AddChangeCallback( "wire_turret_delay_lock", dontLockAll, "CFC_ToolBalance_WireTurret_WatchLocks" )
+cvars.AddChangeCallback( "wire_turret_damage_lock", dontLockAll, "CFC_ToolBalance_WireTurret_WatchLocks" )
+cvars.AddChangeCallback( "wire_turret_numbullets_lock", dontLockAll, "CFC_ToolBalance_WireTurret_WatchLocks" )
+cvars.AddChangeCallback( "wire_turret_spread_lock", dontLockAll, "CFC_ToolBalance_WireTurret_WatchLocks" )
 
 hook.Add( "CFC_ToolBalance_WireTurret_PanelBuilt", "CFC_ToolBalance_WireTurret_WrapPanel", function()
     local mainPanel = controlpanel.Get( "wire_turret" )
