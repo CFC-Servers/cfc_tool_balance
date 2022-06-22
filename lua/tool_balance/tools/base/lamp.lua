@@ -11,6 +11,7 @@ local config = {
 local values = config
 
 local callAfter = cfcToolBalance.callAfter
+local IsValid = IsValid
 
 local function clampLamp( self, ... ) -- The setter functions for lamps get overridden by ENT.NetworkVar, so we cannot just wrap those functions and call it a day
     self:SetLightFOV( math.Clamp( self.fov or 0, values.fov.min, values.fov.max ) )
@@ -24,6 +25,7 @@ local function wrapLamp()
     LAMP.UpdateLight = callAfter( LAMP.UpdateLight, clampLamp )
 
     hook.Add( "OnEntityCreated", "CFCToolBalanceClampLamp", function( ent )
+        if not IsValid( ent ) then return end
         if ent:GetClass() ~= "gmod_lamp" then return end
 
         timer.Simple( 0.1, function()
