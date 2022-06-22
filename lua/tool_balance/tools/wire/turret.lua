@@ -240,6 +240,7 @@ local LOCK_SPREAD = CreateClientConVar( "wire_turret_spread_lock", 0, true, fals
 local DPS_LABEL
 local TEXT_COLOR = Color( 0, 0, 0, 255 )
 
+local clientReady = false
 local forceWrite = {}
 local lockTable = {
     delay = LOCK_DELAY,
@@ -356,6 +357,8 @@ local function displayDPS()
 end
 
 local function dClampConVar( cvName, oldVal, newVal )
+    if not clientReady then return end
+
     if forceWrite[cvName] then
         forceWrite[cvName] = nil
 
@@ -418,6 +421,7 @@ hook.Add( "InitPostEntity", "CFC_ToolBalance_WireTurret_WrapBuildCPanel", functi
     local oldBuilder = toolMenu.CPanelFunction
 
     toolMenu._CPanelFunction = oldBuilder
+    clientReady = true
 
     toolMenu.CPanelFunction = function( CPanel )
         oldBuilder( CPanel )
