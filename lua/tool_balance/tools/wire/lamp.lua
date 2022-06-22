@@ -2,8 +2,8 @@
 
 -- config
 local config = {
-    fov = { min = 10, max = 170 },
-    distance = { min = 64, max = 1024 },
+    fov        = { min = 10, max = 170 },
+    distance   = { min = 64, max = 1024 },
     brightness = { min = 0, max = 3 },
 }
 
