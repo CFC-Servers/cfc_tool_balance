@@ -242,6 +242,7 @@ local TEXT_COLOR = Color( 0, 0, 0, 255 )
 
 local clientReady = false
 local forceWrite = {}
+local dNumSliders = {}
 local lockTable = {
     delay = LOCK_DELAY,
     damage = LOCK_DAMAGE,
@@ -251,10 +252,16 @@ local lockTable = {
 
 local function isLocked( varName )
     local lockConVar = lockTable[varName]
-
     if not lockConVar then return end
 
-    return lockConVar:GetBool()
+    local cvLocked = lockConVar:GetBool()
+    if not cvLocked then return false end
+
+    local slider = dNumSliders[varName]
+
+    if slider and slider:IsEditing() then return false end
+
+    return true
 end
 
 local function dpsMultToDelay( mult )
@@ -414,6 +421,12 @@ hook.Add( "CFC_ToolBalance_WireTurret_PanelBuilt", "CFC_ToolBalance_WireTurret_W
     spreadSlider:SetMinMax( config.spread.min, config.spread.max )
     forceSlider:SetMinMax( config.force.min, config.force.max )
     numbulletsSlider:SetMinMax( config.numbullets.min, config.numbullets.max )
+
+    dNumSliders.damage = damageSlider
+    dNumSliders.delay = delaySlider
+    dNumSliders.spread = spreadSlider
+    dNumSliders.force = forceSlider
+    dNumSliders.numbullets = numbulletsSlider
 end )
 
 hook.Add( "InitPostEntity", "CFC_ToolBalance_WireTurret_WrapBuildCPanel", function()
