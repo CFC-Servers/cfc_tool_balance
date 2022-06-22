@@ -28,7 +28,7 @@ local function wrapLamp()
         if not IsValid( ent ) then return end
         if ent:GetClass() ~= "gmod_lamp" then return end
 
-        timer.Simple( 0.1, function()
+        timer.Simple( 0, function()
             if not IsValid( ent ) then return end
 
             clampLamp( ent )
