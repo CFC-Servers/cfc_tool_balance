@@ -188,6 +188,10 @@ if SERVER then
                 self._SetSpread( self, dclampSpread( self, val ) )
             end
 
+            WIRE_TURRET.SetSound = function()
+                -- nope
+            end
+
             WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, {config.force})
             WIRE_TURRET.Setup = function ( self, delay, damage, force, sound, numbullets, spread, tracer, tracernum )
                 self:SetForce( force )
