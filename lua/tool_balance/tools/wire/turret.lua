@@ -72,7 +72,7 @@ local function dpsMultSpread( self, forceVal )
     local spreadLim = config.spread
     local spreadMultLim = config.spreadDPSMult
     local spread = forceVal or ( SERVER and ( self.spread or 0 ) ) or WIRE_TURRET_SPREAD:GetFloat()
-    
+
     spread = clampF( spread, spreadLim.min, spreadLim.max )
     local spreadMult = spreadMultLim.max + ( spreadMultLim.min - spreadMultLim.max ) * spread
 
@@ -192,7 +192,7 @@ if SERVER then
                 -- nope
             end
 
-            WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, {config.force})
+            WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, { config.force } )
             WIRE_TURRET.Setup = function ( self, delay, damage, force, sound, numbullets, spread, tracer, tracernum )
                 self:SetForce( force )
                 self:SetDelay( delay )
@@ -206,11 +206,11 @@ if SERVER then
         else -- Not using dynamic wire turret limits
             WIRE_TURRET.Setup = clampMethod( WIRE_TURRET.Setup, values )
 
-            WIRE_TURRET.SetDelay = clampMethod( WIRE_TURRET.SetDelay, {config.delay})
-            WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, {config.force})
-            WIRE_TURRET.SetDamage = clampMethod( WIRE_TURRET.SetDamage, {config.damage})
-            WIRE_TURRET.SetNumBullets = clampMethod( WIRE_TURRET.SetNumBullets, {config.numbullets})
-            WIRE_TURRET.SetSpread = clampMethod( WIRE_TURRET.SetSpread, {config.spread}) 
+            WIRE_TURRET.SetDelay = clampMethod( WIRE_TURRET.SetDelay, { config.delay } )
+            WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, { config.force } )
+            WIRE_TURRET.SetDamage = clampMethod( WIRE_TURRET.SetDamage, { config.damage } )
+            WIRE_TURRET.SetNumBullets = clampMethod( WIRE_TURRET.SetNumBullets, { config.numbullets } )
+            WIRE_TURRET.SetSpread = clampMethod( WIRE_TURRET.SetSpread, { config.spread } )
         end
 
         print( "[CFC_Tool_Balance] wire/turret loaded" )
