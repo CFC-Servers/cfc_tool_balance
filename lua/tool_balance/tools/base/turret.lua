@@ -18,11 +18,11 @@ local clampMethod = cfcToolBalance.clampMethod
 local function wrapTurret()
     local TURRET =  scripted_ents.GetStored( "gmod_turret" ).t
 
-    TURRET.SetDelay = clampMethod( TURRET.SetDelay, {values.delay} )
-    TURRET.SetDamage = clampMethod( TURRET.SetDamage, {values.damage} )
-    TURRET.SetForce = clampMethod( TURRET.SetForce, {values.force} )
-    TURRET.SetNumBullets = clampMethod( TURRET.SetNumBullets, {values.numbullets} )
-    TURRET.SetSpread = clampMethod( TURRET.SetSpread, {values.spread} )
+    TURRET.SetDelay = clampMethod( TURRET.SetDelay, { values.delay } )
+    TURRET.SetDamage = clampMethod( TURRET.SetDamage, { values.damage } )
+    TURRET.SetForce = clampMethod( TURRET.SetForce, { values.force } )
+    TURRET.SetNumBullets = clampMethod( TURRET.SetNumBullets, { values.numbullets } )
+    TURRET.SetSpread = clampMethod( TURRET.SetSpread, { values.spread } )
     TURRET.SetSound = function()
         -- noop
     end

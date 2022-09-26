@@ -26,11 +26,11 @@ local function wrapWireTurret()
     local WIRE_TURRET =  scripted_ents.GetStored( "gmod_wire_turret" ).t
     WIRE_TURRET.Setup = clampMethod( WIRE_TURRET.Setup, values )
 
-    WIRE_TURRET.SetDelay = clampMethod( WIRE_TURRET.SetDelay, {config.delay})
-    WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, {config.force})
-    WIRE_TURRET.SetDamage = clampMethod( WIRE_TURRET.SetDamage, {config.damage})
-    WIRE_TURRET.SetNumBullets = clampMethod( WIRE_TURRET.SetNumBullets, {config.numbullets})
-    WIRE_TURRET.SetSpread = clampMethod( WIRE_TURRET.SetSpread, {config.spread})
+    WIRE_TURRET.SetDelay = clampMethod( WIRE_TURRET.SetDelay, { config.delay } )
+    WIRE_TURRET.SetForce = clampMethod( WIRE_TURRET.SetForce, { config.force } )
+    WIRE_TURRET.SetDamage = clampMethod( WIRE_TURRET.SetDamage, { config.damage } )
+    WIRE_TURRET.SetNumBullets = clampMethod( WIRE_TURRET.SetNumBullets, { config.numbullets } )
+    WIRE_TURRET.SetSpread = clampMethod( WIRE_TURRET.SetSpread, { config.spread } )
 
     WIRE_TURRET.SetSound = function()
         -- nope

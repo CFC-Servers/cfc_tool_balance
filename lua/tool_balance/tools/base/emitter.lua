@@ -21,7 +21,7 @@ local function wrapEmitter()
 
     local EMITTER =  scripted_ents.GetStored( "gmod_emitter" ).t
     EMITTER.SetupDataTables = callAfter( EMITTER.SetupDataTables, function( self, ... )
-        self.SetDelay = clampMethod( self.SetDelay, {config.delay} )
+        self.SetDelay = clampMethod( self.SetDelay, { config.delay } )
     end )
 
     print( "[CFC_Tool_Balance] base/emitter loaded" )
