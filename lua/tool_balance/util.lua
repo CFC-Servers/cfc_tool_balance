@@ -10,7 +10,7 @@ function cfcToolBalance.clampFunction( func, min_max_values )
     -- returns a new function
 
     local function clamped( ... )
-        local args = {...}
+        local args = { ... }
 
         -- clamp args according to min_max_values
         for i, range in ipairs( min_max_values ) do
