@@ -1,5 +1,4 @@
 -- wire/nm_sprites
-
 local math_Clamp = math.Clamp
 
 -- config
