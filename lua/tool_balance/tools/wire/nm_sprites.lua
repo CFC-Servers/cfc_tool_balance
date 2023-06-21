@@ -20,7 +20,6 @@ local function wrapWireSprites()
         return old_CreateNMSprite( self )
     end
 
-
     print( "[CFC_Tool_Balance] wire/nm_sprites loaded" )
 end
 
