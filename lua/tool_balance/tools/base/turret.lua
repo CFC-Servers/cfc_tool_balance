@@ -24,8 +24,6 @@ local function wrapTurret( entTbl )
     entTbl.SetSound = function()
         -- noop
     end
-
-    print( "[CFC_Tool_Balance] base/turret loaded" )
 end
 
 cfcToolBalance.waitForSENT( "gmod_turret", wrapTurret )
