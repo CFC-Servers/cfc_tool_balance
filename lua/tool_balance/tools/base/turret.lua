@@ -15,28 +15,17 @@ local values = config
 
 local clampMethod = cfcToolBalance.clampMethod
 
-local function wrapTurret()
-    local TURRET =  scripted_ents.GetStored( "gmod_turret" ).t
-
-    TURRET.SetDelay = clampMethod( TURRET.SetDelay, { values.delay } )
-    TURRET.SetDamage = clampMethod( TURRET.SetDamage, { values.damage } )
-    TURRET.SetForce = clampMethod( TURRET.SetForce, { values.force } )
-    TURRET.SetNumBullets = clampMethod( TURRET.SetNumBullets, { values.numbullets } )
-    TURRET.SetSpread = clampMethod( TURRET.SetSpread, { values.spread } )
-    TURRET.SetSound = function()
+local function wrapTurret( entTbl )
+    entTbl.SetDelay = clampMethod( entTbl.SetDelay, { values.delay } )
+    entTbl.SetDamage = clampMethod( entTbl.SetDamage, { values.damage } )
+    entTbl.SetForce = clampMethod( entTbl.SetForce, { values.force } )
+    entTbl.SetNumBullets = clampMethod( entTbl.SetNumBullets, { values.numbullets } )
+    entTbl.SetSpread = clampMethod( entTbl.SetSpread, { values.spread } )
+    entTbl.SetSound = function()
         -- noop
     end
 
     print( "[CFC_Tool_Balance] base/turret loaded" )
 end
 
-local function waitingFor()
-    local ent = scripted_ents.GetStored( "gmod_turret" )
-    return ent and ent.t.SetDamage ~= nil
-end
-
-local function onTimeout()
-    print( "[CFC_Tool_Balance] base/turret failed, waiter timed out" )
-end
-
-cfcToolBalance.waitFor( waitingFor, wrapTurret, onTimeout, "base/turret" )
+cfcToolBalance.waitForSENT( "gmod_turret", wrapTurret )

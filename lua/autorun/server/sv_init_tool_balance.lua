@@ -1,6 +1,4 @@
-require( "cfcwaiter" )
-
-cfcToolBalance = {}
+cfcToolBalance = cfcToolBalance or {}
 cfcToolBalance.canDealDamage = {}
 
 include( "tool_balance/util.lua" )
@@ -16,14 +14,9 @@ for _, dir in ipairs( directories ) do
     end
 end
 
--- allow turrets to do damage while apg "Allow Prop Killing" is off
-hook.Remove( "APGisBadEnt", "CFCToolBalanceCanDamage" )
-hook.Add( "APGisBadEnt", "CFCToolBalanceCanDamage", function( ent )
-    if not IsValid( ent ) then return end
+-- Autorefresh support
+if cfcToolBalance.AutorunLoaded then
+    cfcToolBalance.runWrappers()
+end
 
-    local class = ent:GetClass()
-    local canDealDamage = cfcToolBalance.canDealDamage[class]
-    if canDealDamage == nil then return end
-
-    return not canDealDamage
-end )
+cfcToolBalance.AutorunLoaded = true

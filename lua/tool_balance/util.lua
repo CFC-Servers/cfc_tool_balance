@@ -1,5 +1,3 @@
-require( "cfcwaiter" )
-
 local function count( tbl )
     local keys = table.GetKeys( tbl )
     return keys[#keys]
@@ -40,8 +38,32 @@ function cfcToolBalance.callAfter( func, afterFunc )
     return wrapped
 end
 
-function cfcToolBalance.waitFor( waitingFor, onSuccess, onTimout, name )
-    local identifier = "cfc_tool_balance_" .. name
-
-    Waiter.waitFor( waitingFor, onSuccess, onTimout, identifier )
+local sentsToWrap = {}
+function cfcToolBalance.waitForSENT( class, wrapper )
+    sentsToWrap[class] = wrapper
 end
+
+local toolsToWrap = {}
+function cfcToolBalance.waitForTool( tool, wrapper )
+    toolsToWrap[tool] = wrapper
+end
+
+function cfcToolBalance.runWrappers()
+    for tool, wrapper in pairs( toolsToWrap ) do
+        local toolTbl = weapons.GetStored( "gmod_tool" ).Tool[tool]
+        if toolTbl then
+            wrapper( toolTbl )
+            print( "[CFC_Tool_Balance] Wrapped tool " .. tool )
+        end
+    end
+
+    for class, wrapper in pairs( sentsToWrap ) do
+        local entTbl = scripted_ents.GetStored( class )
+        if entTbl then
+            wrapper( entTbl.t )
+            print( "[CFC_Tool_Balance] Wrapped SENT " .. class )
+        end
+    end
+end
+
+hook.Add( "InitPostEntity", "cfcToolBalance.waitForTools", cfcToolBalance.runWrappers )
