@@ -3,8 +3,8 @@ cfcToolBalance.canDealDamage["gmod_entTbl"] = true
 
 -- config
 local config = {
-    delay      = { min = 0.05, max = math.huge },
-    damage     = { min = 0,   max = 20 },
+    delay      = { min = 0.1, max = math.huge },
+    damage     = { min = 0,   max = 15 },
     force      = { min = 0,   max = 1 },
     numbullets = { min = 0,   max = 1 },
     spread     = { min = 0,   max = 10 }
