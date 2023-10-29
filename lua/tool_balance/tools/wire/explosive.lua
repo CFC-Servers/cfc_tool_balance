@@ -1,6 +1,3 @@
--- wire/explosive
-cfcToolBalance.canDealDamage["gmod_entTbl"] = true
-
 -- config
 local config = {
     damage          = { min = 0, max = 100 },
@@ -10,7 +7,7 @@ local config = {
 
 local EXPLOSIVE_WAIT_PERIOD = 5
 
--- min and max values for gmod_entTbl
+-- min and max values for gmod_wire_explosive
 local values = {
     {}, -- key
     config.damage,

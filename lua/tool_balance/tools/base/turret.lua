@@ -1,6 +1,3 @@
--- base/turret
-cfcToolBalance.canDealDamage["gmod_turret"] = true
-
 -- config
 local config = {
     delay      = { min = 0.1, max = math.huge },

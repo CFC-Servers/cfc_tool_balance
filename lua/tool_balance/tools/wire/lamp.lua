@@ -7,7 +7,7 @@ local config = {
     brightness = { min = 0, max = 3 },
 }
 
--- min and max values for gmod_entTbl
+-- min and max values for gmod_wire_explosive
 local values = config
 
 local callAfter = cfcToolBalance.callAfter

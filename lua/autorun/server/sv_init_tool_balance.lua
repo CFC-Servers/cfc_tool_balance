@@ -1,5 +1,4 @@
 cfcToolBalance = cfcToolBalance or {}
-cfcToolBalance.canDealDamage = {}
 
 include( "tool_balance/util.lua" )
 
