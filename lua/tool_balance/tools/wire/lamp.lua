@@ -1,5 +1,3 @@
--- wire/lamp
-
 -- config
 local config = {
     fov        = { min = 10, max = 170 },
@@ -7,7 +5,7 @@ local config = {
     brightness = { min = 0, max = 3 },
 }
 
--- min and max values for gmod_entTbl
+-- min and max values for gmod_wire_lamp
 local values = config
 
 local callAfter = cfcToolBalance.callAfter

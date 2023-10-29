@@ -1,6 +1,3 @@
--- wire/turret
-cfcToolBalance.canDealDamage["gmod_entTbl"] = true
-
 -- config
 local config = {
     delay      = { min = 0.05, max = math.huge },
@@ -10,7 +7,7 @@ local config = {
     spread     = { min = 0,   max = 10 }
 }
 
--- min and max values for gmod_entTbl
+-- min and max values for gmod_wire_turret
 local values = {
     config.delay,
     config.damage,
