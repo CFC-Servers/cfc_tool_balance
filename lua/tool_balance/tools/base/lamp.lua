@@ -19,10 +19,8 @@ local function clampLamp( self, ... ) -- The setter functions for lamps get over
     self:SetBrightness( math.Clamp( self.brightness or 0, values.brightness.min, values.brightness.max ) )
 end
 
-local function wrapLamp()
-    local LAMP = scripted_ents.GetStored( "gmod_lamp" ).t
-
-    LAMP.UpdateLight = callAfter( clampLamp, LAMP.UpdateLight )
+local function wrapLamp( entTbl )
+    entTbl.UpdateLight = callAfter( clampLamp, entTbl.UpdateLight )
 
     hook.Add( "OnEntityCreated", "CFCToolBalanceClampLamp", function( ent )
         if not IsValid( ent ) then return end
@@ -34,17 +32,6 @@ local function wrapLamp()
             clampLamp( ent )
         end )
     end )
-
-    print( "[CFC_Tool_Balance] base/lamp loaded" )
 end
 
-local function waitingFor()
-    local ent = scripted_ents.GetStored( "gmod_lamp" )
-    return ent and ent.t.UpdateLight ~= nil
-end
-
-local function onTimeout()
-    print( "[CFC_Tool_Balance] base/lamp failed, waiter timed out" )
-end
-
-cfcToolBalance.waitFor( waitingFor, wrapLamp, onTimeout, "base/lamp" )
+cfcToolBalance.waitForSENT( "gmod_lamp", wrapLamp )

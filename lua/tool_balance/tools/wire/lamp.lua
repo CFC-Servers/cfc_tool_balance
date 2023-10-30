@@ -1,5 +1,3 @@
--- wire/lamp
-
 -- config
 local config = {
     fov        = { min = 10, max = 170 },
@@ -18,21 +16,8 @@ local function clampWireLamp( self, ... ) -- Wire lamps don't have setter functi
     self.Brightness = math.Clamp( self.Brightness or 0, values.brightness.min, values.brightness.max )
 end
 
-local function wrapWireLamp()
-    local WIRE_LAMP =  scripted_ents.GetStored( "gmod_wire_lamp" ).t
-
-    WIRE_LAMP.UpdateLight = callAfter( clampWireLamp, WIRE_LAMP.UpdateLight )
-
-    print( "[CFC_Tool_Balance] wire/lamp loaded" )
+local function wrapWireLamp( entTbl )
+    entTbl.UpdateLight = callAfter( clampWireLamp, entTbl.UpdateLight )
 end
 
-local function waitingFor()
-    local ent = scripted_ents.GetStored( "gmod_wire_lamp" )
-    return ent and ent.t.UpdateLight ~= nil
-end
-
-local function onTimeout()
-    print( "[CFC_Tool_Balance] wire/lamp failed, waiter timed out" )
-end
-
-cfcToolBalance.waitFor( waitingFor, wrapWireLamp, onTimeout, "wire/lamp" )
+cfcToolBalance.waitForSENT( "gmod_wire_lamp", wrapWireLamp )
