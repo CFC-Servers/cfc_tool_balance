@@ -17,6 +17,7 @@ local function clampLamp( self, ... ) -- The setter functions for lamps get over
     self:SetLightFOV( math.Clamp( self.fov or 0, values.fov.min, values.fov.max ) )
     self:SetDistance( math.Clamp( self.distance or 0, values.distance.min, values.distance.max ) )
     self:SetBrightness( math.Clamp( self.brightness or 0, values.brightness.min, values.brightness.max ) )
+    self:SetKeyValue( "enableshadows", 0 )
 end
 
 local function wrapLamp( entTbl )
